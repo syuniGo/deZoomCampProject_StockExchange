@@ -1,6 +1,6 @@
 version: '3'
 services:
-  magic:
+  mage_spark:
     image: mageai/mageai:latest
     command: mage start ${PROJECT_NAME}
     env_file:
