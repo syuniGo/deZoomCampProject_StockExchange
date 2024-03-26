@@ -1,0 +1,104 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: data_loaders/loaddata.py
+  downstream_blocks:
+  - colorful_inventor
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: loaddata
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: loaddata
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: transformers/colorful_inventor.py
+  downstream_blocks:
+  - output_indexdata
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: colorful_inventor
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - loaddata
+  uuid: colorful_inventor
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: data_exporters/output_indexdata.py
+  downstream_blocks:
+  - output_indexinfo1
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: output_indexdata
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - colorful_inventor
+  uuid: output_indexdata
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: data_exporters/output_indexinfo1.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: output_indexinfo1
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - output_indexdata
+  uuid: output_indexinfo1
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-03-26 03:29:52.039985+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: loadindexdate
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+uuid: loadindexdate
+variables:
+  credentials_location: /home/src/gcp/modern-tangent-413310-831bb8d92013.json
+  indexInfo: index_dataset/info/indexInfo.csv
+  input_path: index_dataset/indexProcessed.csv
+  output_path: gs://dezoomcamp_index_dataset/index
+variables_dir: /root/.mage_data/magic-zoomcamp
+widgets: []
